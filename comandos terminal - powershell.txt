@@ -1,0 +1,28 @@
+REGRAS de FIREWALL via CMD
+
+netsh advfirewall firewall add rule name="FTP-IN" dir=in action=allow protocol=TCP localport=21
+netsh advfirewall firewall add rule name="TS-out" dir=out action=allow protocol=TCP localport=3389
+netsh advfirewall firewall add rule name="Ping" protocol=icmpv4:8,any dir=in action=allow
+netsh advfirewall firewall add rule name="DB-In" dir=in action=allow protocol=TCP localport=1433
+
+Regras de Firewall via powershell:
+New-NetFirewallRule -DisplayName 'HTTP(S) Inbound' -Profile @('Domain', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('80', '443')
+
+
+AZURE - CONTAS DE AUTOMAÇÃO
+Get-AzureRmAutomationSchedule -AutomationAccountName "Contoso17" -Name "DailySchedule08" -ResourceGroupName "ResourceGroup01"
+
+Get-AzAutomationSchedule -AutomationAccountName "autobizkaia" -Name "RestartServer" -ResourceGroupName "bizkaia"
+
+Remove-AzAutomationSchedule -ResourceGroupName "bizkaia" -AutomationAccountName "autobizkaia" -Name "06-Sexta-Ligar"  
+
+Remove-AzAutomationSchedule -ResourceGroupName "bizkaia" -AutomationAccountName "autobizkaia" -Name "Donostia-Delisgar-02-Terça" 	
+
+Remove-AzAutomationSchedule -ResourceGroupName "bizkaia" -AutomationAccountName "autobizkaia" -Name "Donostia-Desligar-01-Segunda"
+
+Remove-AzAutomationSchedule -ResourceGroupName "bizkaia" -AutomationAccountName "autobizkaia" -Name "ligarvm"
+
+Get-AzAutomationSchedule -AutomationAccountName "ProtheusReboot" -Name "RestartServer" -ResourceGroupName "cologne"
+
+Get-AzAutomationSchedule -ResourceGroupName "bizkaia" -AutomationAccountName "autobizkaia" >>c:\temp\schedules.txt
+
